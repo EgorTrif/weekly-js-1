@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script>
+    var cal;
+    function f() {
+        var result; 
+        var n1 = Number(document.getElementById("n1").value);
+        var n2 = Number(document.getElementById("n2").value);
+
+        switch (cal) {
+            case "+" : 
+            result = n1 + n2;
+            break;
+            case '-':
+            result = n1 - n2;
+            break;
+            case '*':
+            result = n1 * n2;
+            break;
+            case '/':
+            if (n2 != 0) {
+            result = n1 / n2;
+            } else {
+                result = 'Выберите другой делитель'
+                }
+                break;
+                default: 
+                result = 'Вы не выбрали операцию'
+        }
+        document.getElementById("result").innerHTML = result;
+    }
+    </script>
+</head>
+<body>
+    <p><input id="n1" /></p>
+
+    <div>
+      <button onclick="cal='+'">+</button>
+      <button onclick="cal='-'">-</button>
+      <button onclick="cal='*'">*</button>
+      <button onclick="cal='/'">/</button>
+    </div>
+    
+    <p><input id="n2" /></p>
+    
+    <button onclick="f()">=</button>
+    
+    <p id="result"></p>   
+</body>
+</html>
