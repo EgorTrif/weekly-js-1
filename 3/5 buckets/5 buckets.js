@@ -107,12 +107,4 @@ myBuckets[4].addEventListener('click', function (){
 });
 
 
-// ______________________________ DLTA SILIH
-// KOGDA V VEDRE EST VODA DELAT EGO SNOVA PUSTIM I UDALYAT S EKRANA
-// diplay none
-// opacity
-// height : 0
-// position: absolutte + top: -30000000000000
-
-// udalit element iz massiva a potom sdelat perender veder
 
