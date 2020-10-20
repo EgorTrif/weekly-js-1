@@ -12,27 +12,32 @@ class Сomputation {
 
     }
     isPrime(number) {
-        if (typeof number === "number") {
-            if (number < 2){
-            this.status = {
+        if (number < 2) {
+            return this.status = {
+                status: false,
+                description: "This number is not a prime"
+            }} else if (number === 2) {
+                return this.status = {
+                    status: true,
+                    description: "This number is a prime"
+                   }}
+            let i = 1;
+            const limit = Math.floor(Math.sqrt(number));
+            while (i <= limit, i++) {
+            if (number % i === 0) {
+            return this.status = {
                 status: false,
                 description: "This number is not a prime"
             }
-            }
-            for (let i = 2; i <= Math.sqrt(number); i++) 
-            if (number % i == 0) {
-                this.status = {
-                    status: false,
-                    description: "This number is not a prime"
-                }
-            }
-                else this.status = {
-                    status: true,
-                    description: "This number is a prime"
-                }
-            }   
         }
-}
+            return this.status = {
+                status: true,
+                description: "This number is a prime"
+               }
+            }
+        }
+    }
+
 
 const MathLibrary = new Сomputation("prime");
 
@@ -42,6 +47,10 @@ class Render {
         this.screenId = screenId;
     }
     renderNumber() {
+        const body = document.getElementById("body");
+        body.style.background = "linear-gradient(to right, pink, yellow)";
+        body.style.color = "purple";
+        
         const screen = document.getElementById(this.screenId);
 
         const h2 = document.createElement("h2");
@@ -56,6 +65,8 @@ class Render {
         button.style.padding = "10px";
         output.className = "output";
         output.style.padding = "10px";
+        output.style.fontFamily = "curlz MT";
+        output.style.fontSize = "100pt";
 
         screen.appendChild(h2);
         screen.appendChild(input);
@@ -63,31 +74,59 @@ class Render {
         screen.appendChild(output);
 
         let hdr = document.createElement("h2");
+        hdr.style.fontFamily = "curlz MT";
         hdr.innerHTML = "Is this a prime number?";
         h2.appendChild(hdr);
 
         let inpt = document.createElement("input");
         inpt.id = "inpt_id";
+        inpt.style.color = "white"
+        inpt.style.backgroundImage = "url('./6311edb6f3a600c9f4a23c35473788a4.jpg')";
+        inpt.style.backgroundPosition = "center";
+        inpt.style.backgroundSize = "50%";
+        inpt.style.width = "300px";
+        inpt.style.height = "50px";
+        inpt.style.fontSize = "30px";
+        inpt.style.boxShadow = "0 14px 28px rgba(0,0,0,0.55), 0 10px 10px rgba(0,0,0,0.52)";
         inpt.type = "number";
         input.appendChild(inpt);
 
-
+        inpt.addEventListener('keydown', function(event){
+            if (event.key == "Enter"){   
+            const {value} = inpt;
+            if (inpt.value < 0 || parseInt(inpt.value) != inpt.value) {
+                output.innerHTML = "Wrong input!"
+            }
+            else {
+            let result = MathLibrary.isPrime(Number(value))
+            console.log(MathLibrary.isPrime(Number(value)))
+            output.innerHTML = result.description
+            }}});
 
         let btn = document.createElement("button")
+        btn.style.width = "100px";
+        btn.style.height = "50px";
+        btn.style.backgroundColor = "darkRed";
+        btn.style.boxShadow = "0 14px 28px rgba(0,0,0,0.55), 0 10px 10px rgba(0,0,0,0.52)";
+        btn.style.color = "gold";
+        btn.style.fontSize = "20pt"
+        btn.style.fontFamily = "curlz MT";
         btn.innerHTML = mainButton.value;
         button.appendChild(btn);
   
         btn.addEventListener('click', function(){
-            console.log(MathLibrary.isPrime(input.value))    
-            
-            //const {value} = inpt;
-           // if (MathLibrary.isPrime(value)) output.innerHTML = "This number is a prime"
-            //else output.innerHTML = "This number is not a prime"
-            }) 
-  
+               
+            const {value} = inpt;
+            if (inpt.value < 0 || parseInt(inpt.value) != inpt.value) {
+                output.innerHTML = "Wrong input!"
+            }
+            else {
+            let result = MathLibrary.isPrime(Number(value))
+            console.log(MathLibrary.isPrime(Number(value)))
+            output.innerHTML = result.description
+            }});
     }
-
-    }
+}
     const number = new Render("number");
     
     number.renderNumber();
