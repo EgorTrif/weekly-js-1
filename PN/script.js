@@ -54,6 +54,11 @@ class Render {
         const screen = document.getElementById(this.screenId);
 
         const h2 = document.createElement("h2");
+        h2.style.fontFamily = "curlz MT";
+        h2.style.fontSize = "42pt"
+        h2.innerHTML = "Is this a prime number?";
+
+        
         const button = document.createElement("div");
         const input = document.createElement("div");
         const output = document.createElement("div");
@@ -72,11 +77,6 @@ class Render {
         screen.appendChild(input);
         screen.appendChild(button);
         screen.appendChild(output);
-
-        let hdr = document.createElement("h2");
-        hdr.style.fontFamily = "curlz MT";
-        hdr.innerHTML = "Is this a prime number?";
-        h2.appendChild(hdr);
 
         let inpt = document.createElement("input");
         inpt.id = "inpt_id";
@@ -117,7 +117,9 @@ class Render {
         btn.addEventListener('click', function(){
                
             const {value} = inpt;
-            if (inpt.value < 0 || parseInt(inpt.value) != inpt.value) {
+            if (inpt.value == "") {
+                output.innerHTML = "Empty input!"
+            } else if (inpt.value < 0 || parseInt(inpt.value) != inpt.value) {
                 output.innerHTML = "Wrong input!"
             }
             else {
