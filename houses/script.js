@@ -45,9 +45,6 @@ class House {
         this.src = './fire.gif';
         this.HTML_TAG.src = './fire.gif';
     }
-    randomHouse() {
-        return this[Math.floor(Math.random() * this.length)];
-    }
 }
 
 class Render {
@@ -57,11 +54,13 @@ class Render {
     renderHouses() {
         const houses = document.getElementById("houses");
         houses.style.marginTop = "340px";
-        
+
         const div = document.createElement("div");
+        div.id = "text";
         div.style.fontSize = "22pt";
         div.style.marginTop = "inherit";
-        houses.appendChild(div)
+        div.style.fontFamily = "'Press Start 2P', cursive";
+        houses.appendChild(div);
         
         const water = document.createElement("div");
         water.id = "water";
@@ -85,8 +84,7 @@ class Render {
                     massivHouses[i].HTML_TAG.style.width = "150px";
                     massivHouses[i].HTML_TAG.style.height = "150px";
 
-
-                    massivHouses[i].HTML_TAG.addEventListener('click', function () {
+                    /*massivHouses[i].HTML_TAG.addEventListener('click', function () {
                     
                         console.log(i);
                         
@@ -106,14 +104,41 @@ class Render {
                         div.style.opacity = "0";
 
                         
-                });
+                });*/
                 
                     water.appendChild(massiveWater[i].HTML_TAG);
                     houses.appendChild(massivHouses[i].HTML_TAG)
                 }
         }
 }
+
+function letsburn(){
+    let i = Math.floor(Math.random()*10)
+        massivHouses[i].changeHouse()
+        document.getElementById("text").style.opacity = "0";
+function putout(){
+    if (massivHouses[i].burningHouse) {
+        massiveWater[i].changeWater(); 
+}
+function normalhouse() {
+    if (massiveWater[i].needWater){
+        document.getElementById("text").innerHTML = "The house " +(i+1)+ " was extinguished!";
+        massiveWater[i].HTML_TAG.style.opacity = "0";
+        massivHouses[i].HTML_TAG.src = './house.png';
+        document.getElementById("text").style.opacity = "1";
+    }
+}
+setTimeout(normalhouse, 5000)
+}
+setTimeout(putout,2000);
+}
+setInterval(letsburn, 9000);
+
 const houses = new Render("houses");
 houses.renderHouses();
+
+
+
+
 
 
